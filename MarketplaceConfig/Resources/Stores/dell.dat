@@ -1,0 +1,1 @@
+<Store xmlns="http://schemas.datacontract.org/2004/07/MarketplaceConfig" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><datVersion>1</datVersion><displayName>Dell</displayName><storeEnabled>false</storeEnabled><storeID>Dell</storeID><storeImage>Resources/Logos/dell.png</storeImage><storeLocale>en-US</storeLocale><storeName>Dell Apps</storeName></Store>

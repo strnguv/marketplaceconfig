@@ -1,0 +1,1 @@
+<Store xmlns="http://schemas.datacontract.org/2004/07/MarketplaceConfig" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><datVersion>1</datVersion><displayName>HTC</displayName><storeEnabled>true</storeEnabled><storeID>HTC</storeID><storeImage>Resources/Logos/htc.png</storeImage><storeLocale>en-US</storeLocale><storeName>HTC Apps</storeName></Store>

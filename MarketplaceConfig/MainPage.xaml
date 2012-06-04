@@ -1,0 +1,136 @@
+﻿ <phone:PhoneApplicationPage 
+    x:Class="MarketplaceConfig.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
+    xmlns:toolkitPrimitives="clr-namespace:Microsoft.Phone.Controls.Primitives;assembly=Microsoft.Phone.Controls.Toolkit"
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    shell:SystemTray.IsVisible="True" shell:SystemTray.Opacity="0" xmlns:my="clr-namespace:System;assembly=mscorlib" Loaded="PhoneApplicationPage_Loaded">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Background="{StaticResource PhoneAccentBrush}" Margin="0">
+            <TextBlock x:Name="PageTitle" Text="marketplace config" Margin="0,8,0,12" FontSize="48" Width="auto" TextAlignment="Center" Style="{StaticResource PhoneTextTitle1Style}"/>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+            <ScrollViewer>
+                <StackPanel>
+                    
+                    <!-- OEM stuff -->
+                    <TextBlock Margin="0,12,0,0" Height="auto" Name="textOEMTitle" Text="OEM Marketplace" FontSize="36" />
+                    <toolkit:ListPicker Height="auto" Name="listOEM" Width="431" FullModeHeader="OEM Marketplace" ExpansionMode="FullScreenOnly">
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding DisplayImage}" Height="30" />
+                                <TextBlock Text="{Binding DisplayName}" Margin="32 0 0 0" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0 21 0 20">
+                                    <Image Source="{Binding DisplayImage}" Width="100" />
+                                <TextBlock Text="{Binding DisplayName}" Foreground="{Binding DisplayColor}" Margin="32 0 0 0" FontSize="43" FontFamily="{StaticResource PhoneFontFamilyLight}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+                <TextBlock Height="auto" Name="textOEMVisible" Text="This OEM does not have a marketplace" FontSize="24" TextWrapping="Wrap" Visibility="Collapsed" />
+                
+                <!-- MO stuff -->
+                <TextBlock Height="auto" Name="textMOTitle" Text="Operator Marketplace" FontSize="36" Margin="0,20,0,0" />
+                <toolkit:ListPicker Height="auto" Name="listMO" Width="432" FullModeHeader="Mobile Operator Marketplace" ExpansionMode="FullScreenOnly">
+                        <toolkit:ListPicker.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding DisplayImage}" Height="30" />
+                                    <TextBlock Text="{Binding DisplayName}" Margin="32 0 0 0" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:ListPicker.ItemTemplate>
+                        <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0 21 0 20">
+                                <Image Source="{Binding DisplayImage}" Width="69" />
+                                <StackPanel>
+                                    <TextBlock Text="{Binding DisplayName}" Margin="16 0 0 0" FontSize="43" FontFamily="{StaticResource PhoneFontFamilyLight}" Foreground="{Binding DisplayColor}" />
+                                    <TextBlock Text="{Binding DisplaySubtext}" Margin="16 0 0 0" FontSize="32" FontFamily="{StaticResource PhoneFontFamilyLight}" Foreground="DarkGray" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+                <TextBlock Height="auto" Name="textMOVisbile" Text="This operator does not have a marketplace" FontSize="24" TextWrapping="Wrap" Visibility="Collapsed" />
+
+                <!-- Region stuff (NOT READY YET) -->
+                <!-- For those messing with the source: use this at your own risk -->
+                <TextBlock Visibility="Collapsed" Height="auto" Name="textMarketTitle" Text="Marketplace Region" FontSize="36" Margin="0,20,0,0" />
+                <toolkit:ListPicker Visibility="Collapsed" Height="auto" Name="listRegion" Width="432" FullModeHeader="Marketplace Region" ExpansionMode="FullScreenOnly">
+                    <toolkit:ListPicker.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Flag}" Height="32" Margin="0,0,8,0" />
+                                <TextBlock Text="{Binding EnglishName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:ListPicker.ItemTemplate>
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Margin="0 21 0 20">
+                                <Image Source="{Binding Flag}" Width="64" />
+                                <StackPanel>
+                                    <TextBlock Text="{Binding EnglishName}" Margin="16 0 0 0" FontSize="36" FontFamily="{StaticResource PhoneFontFamilyLight}" Foreground="White" />
+                                    <TextBlock Text="{Binding NativeName}" Margin="16 0 0 0" FontSize="28" FontFamily="{StaticResource PhoneFontFamilyLight}" Foreground="DarkGray" />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
+
+                <!-- Max download stuff -->
+                <TextBlock Height="auto" Name="textMaxDownloadTitle" Text="Max download without WiFi" FontSize="36" Margin="0,20,0,0" />
+                <StackPanel Orientation="Horizontal">
+                    <Slider Height="84" Name="sliderMaxDownload" Width="320" Value="20" Minimum="2" Maximum="200" SmallChange="1" LargeChange="10" ValueChanged="sliderMaxDownload_ValueChanged" />
+                    <TextBlock Height="auto" Name="textMaxDownload" Text="20 MB" FontSize="32" Width="124" TextAlignment="Right" />
+                </StackPanel>
+                    
+                <TextBlock Height="auto" Name="textRestart" Text="Note: The changes you have made require a device reboot to take effect" TextWrapping="Wrap" FontSize="24" TextAlignment="Center" Visibility="Collapsed" />
+            </StackPanel>
+          </ScrollViewer>
+        </Grid>
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True" BackgroundColor="{StaticResource PhoneAccentColor}">
+            <shell:ApplicationBar.MenuItems>
+                <!--<shell:ApplicationBarMenuItem Text="DEBUG: erase all settings" x:Name="menuEraseSettings" Click="menuEraseSettings_Click" />-->
+                <shell:ApplicationBarMenuItem Text="update available stores" x:Name="menuUpdate" Click="menuUpdate_Click" />
+                <shell:ApplicationBarMenuItem Text="about" x:Name="menuAbout" Click="menuAbout_Click" />
+            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton IconUri="/Resources/appbar.save.rest.png" Text="apply" x:Name="menuSave" Click="menuSave_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Resources/appbar.cancel.rest.png" Text="cancel" x:Name="menuCancel" Click="menuCancel_Click" />
+            <shell:ApplicationBarIconButton IconUri="/Resources/appbar.feature.settings.rest.png" Text="settings" x:Name="menuSettings" Click="menuSettings_Click" />
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
+
+</phone:PhoneApplicationPage>
+    
+    
