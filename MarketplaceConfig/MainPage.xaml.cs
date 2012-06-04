@@ -32,7 +32,7 @@ namespace MarketplaceConfig
             InitializeComponent();
 
             // Test for unlock status
-            if (WP7RootToolsSDK.Environment.HasRootAccess())
+            if (!WP7RootToolsSDK.Environment.HasRootAccess())
             {
                 // Disable everything since nothing will work right anyway
                 listMO.IsEnabled = false;
