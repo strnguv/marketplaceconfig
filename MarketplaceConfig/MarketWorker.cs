@@ -179,9 +179,12 @@ namespace MarketplaceConfig
         public static void setOEMStore(Store store)
         {
             // Unlock the file if marked as read-only
-            FileAttributes attributes = File.GetAttributes(@"\My Documents\Zune\PimentoCache\Keepers\LKG_OEMStoreConfig.xml");
-            if (attributes.ReadOnly)
-                File.SetAttributes(@"\My Documents\Zune\PimentoCache\Keepers\LKG_OEMStoreConfig.xml", new FileAttributes(FileAttributesEnum.Archive));
+            if (WP7RootToolsSDK.FileSystem.FileExists(@"\My Documents\Zune\PimentoCache\Keepers\LKG_OEMStoreConfig.xml"))
+            {
+                FileAttributes attributes = File.GetAttributes(@"\My Documents\Zune\PimentoCache\Keepers\LKG_OEMStoreConfig.xml");
+                if (attributes.ReadOnly)
+                    File.SetAttributes(@"\My Documents\Zune\PimentoCache\Keepers\LKG_OEMStoreConfig.xml", new FileAttributes(FileAttributesEnum.Archive));
+            }
 
             // Overwrite the file with the desired market
             File.WriteAllBytes(@"\My Documents\Zune\PimentoCache\Keepers\LKG_OEMStoreConfig.new",
@@ -247,9 +250,12 @@ namespace MarketplaceConfig
         public static void setMOStore(MOStore store)
         {
             // Unlock the file if marked as read-only
-            FileAttributes attributes = File.GetAttributes(@"\My Documents\Zune\PimentoCache\Keepers\LKG_MOStoreConfig.xml");
-            if (attributes.ReadOnly)
-                File.SetAttributes(@"\My Documents\Zune\PimentoCache\Keepers\LKG_MOStoreConfig.xml", new FileAttributes(FileAttributesEnum.Archive));
+            if (WP7RootToolsSDK.FileSystem.FileExists(@"\My Documents\Zune\PimentoCache\Keepers\LKG_MOStoreConfig.xml"))
+            {
+                FileAttributes attributes = File.GetAttributes(@"\My Documents\Zune\PimentoCache\Keepers\LKG_MOStoreConfig.xml");
+                if (attributes.ReadOnly)
+                    File.SetAttributes(@"\My Documents\Zune\PimentoCache\Keepers\LKG_MOStoreConfig.xml", new FileAttributes(FileAttributesEnum.Archive));
+            }
 
             // Overwrite the file with the desired market
             File.WriteAllBytes(@"\My Documents\Zune\PimentoCache\Keepers\LKG_MOStoreConfig.new",
