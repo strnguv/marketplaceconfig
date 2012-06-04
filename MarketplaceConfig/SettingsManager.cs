@@ -63,7 +63,14 @@ namespace MarketplaceConfig
             {
                 List<Store> mos = new List<Store>();
                 mos.Add(Store.loadStore(new Uri("Resources/Stores/unlocked.dat", UriKind.Relative), true));
-                mos.Add(MarketWorker.generateMOStore().toStore());
+                try
+                {
+                    mos.Add(MarketWorker.generateMOStore().toStore());
+                }
+                catch (Exception)
+                {
+                    // LKG_MOStoreConfig.xml doesn't exists. Oddly, it happens. Don't crash, just carry on.
+                }
                 defaults.Add("mos", mos);
             }
 

@@ -162,7 +162,14 @@ namespace MarketplaceConfig
         /// <returns>Store ID as a string</returns>
         public static string getOEMStore()
         {
-            return readXMLValue(@"\My Documents\Zune\PimentoCache\Keepers\LKG_OEMStoreConfig.xml", "setting", "id", "OEMStoreID");
+            try
+            {
+                return readXMLValue(@"\My Documents\Zune\PimentoCache\Keepers\LKG_OEMStoreConfig.xml", "setting", "id", "OEMStoreID");
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>
@@ -223,7 +230,14 @@ namespace MarketplaceConfig
         /// <returns>Store ID as a string</returns>
         public static string getMOStore()
         {
-            return readXMLValue(@"\My Documents\Zune\PimentoCache\Keepers\LKG_MOStoreConfig.xml", "setting", "id", "MOStoreID");
+            try
+            {
+                return readXMLValue(@"\My Documents\Zune\PimentoCache\Keepers\LKG_MOStoreConfig.xml", "setting", "id", "MOStoreID");
+            }
+            catch (Exception)
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>
