@@ -12,6 +12,7 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.Collections.ObjectModel;
 using Microsoft.Phone.Tasks;
+using WP7RootToolsSDK;
 
 namespace MarketplaceConfig
 {
@@ -29,6 +30,19 @@ namespace MarketplaceConfig
         public MainPage()
         {
             InitializeComponent();
+
+            // Test for unlock status
+            if (WP7RootToolsSDK.Environment.HasRootAccess())
+            {
+                // Disable everything since nothing will work right anyway
+                listMO.IsEnabled = false;
+                listOEM.IsEnabled = false;
+                sliderMaxDownload.IsEnabled = false;
+                
+                // Inform the user
+                messageQueue.Enqueue("This app requires root access. Please mark this app as 'Trusted' in WP7 Root Tools and restart the app.");
+                return;
+            }
 
             // Update the lists
             populateLists();
