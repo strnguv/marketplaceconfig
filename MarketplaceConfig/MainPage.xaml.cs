@@ -21,7 +21,6 @@ namespace MarketplaceConfig
         // Lists for the UI to data bind to
         ObservableCollection<Store> oems = new ObservableCollection<Store>();
         ObservableCollection<MOStore> mos = new ObservableCollection<MOStore>();
-        List<Region> regions = null;
 
         // Message queue
         Queue<String> messageQueue = new Queue<string>();
@@ -141,14 +140,6 @@ namespace MarketplaceConfig
 
             listOEM.IsEnabled = true;
             listMO.IsEnabled = true;
-            
-            /* this feature is not ready yet, mess with it at your own caution
-            regions = new List<Region>();
-            foreach (string region in (List<string>)SettingsManager.getInstance().loadValue("regions"))
-                regions.Add(new Region(region));
-            listRegion.ItemsSource = from r in regions orderby r.EnglishName select r;
-             */
-
 
             // This slider seems so easy in comparison :P
             sliderMaxDownload.Value = MarketWorker.getMaxDownload();
