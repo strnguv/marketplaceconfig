@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{165E9C60-4089-492A-81AA-84747B31D538}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Homebrew</RootNamespace>
+    <AssemblyName>Homebrew</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Phone.InteropServices">
+      <HintPath>..\..\WebServer\WebServer\Microsoft.Phone.InteropServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Compass.cs" />
+    <Compile Include="Device.cs" />
+    <Compile Include="DeviceAPI\HTCInterop.cs" />
+    <Compile Include="DeviceAPI\InteropBase.cs" />
+    <Compile Include="DeviceAPI\LGInterop.cs" />
+    <Compile Include="DeviceAPI\Provision\HTCProvision.cs" />
+    <Compile Include="DeviceAPI\Provision\IProvision.cs" />
+    <Compile Include="DeviceAPI\Provision\LGProvision.cs" />
+    <Compile Include="DeviceAPI\Registry\HTCRegistry.cs" />
+    <Compile Include="DeviceAPI\Registry\IRegistry.cs" />
+    <Compile Include="DeviceAPI\Registry\LGRegistry.cs" />
+    <Compile Include="DeviceAPI\Registry\SamsungRegistry.cs" />
+    <Compile Include="DeviceAPI\Registry\WindowsCERegistry.cs" />
+    <Compile Include="DeviceAPI\SamsungInterop.cs" />
+    <Compile Include="DeviceAPI\WindowsCEInterop.cs" />
+    <Compile Include="Extensions\EncodingExtensions.cs" />
+    <Compile Include="Extensions\IsolatedStoreFileExtensions.cs" />
+    <Compile Include="Extensions\UriExtensions.cs" />
+    <Compile Include="HtcRootAccess.cs" />
+    <Compile Include="IO\Directory.cs" />
+    <Compile Include="IO\DirectoryInfo.cs" />
+    <Compile Include="IO\FileSystemInfo.cs" />
+    <Compile Include="IO\File.cs" />
+    <Compile Include="IO\FileInfo.cs" />
+    <Compile Include="IO\FileStream.cs" />
+    <Compile Include="IO\FileSystemInterop.cs" />
+    <Compile Include="InteropHelper.cs" />
+    <Compile Include="Net\AddressFamily.cs" />
+    <Compile Include="Net\AddressInfo.cs" />
+    <Compile Include="Net\Dns.cs" />
+    <Compile Include="Net\EndPoint.cs" />
+    <Compile Include="Net\InternalException.cs" />
+    <Compile Include="Net\IPAddress.cs" />
+    <Compile Include="Net\IPEndPoint.cs" />
+    <Compile Include="Net\Iphlpapi.cs" />
+    <Compile Include="Net\IPHostEntry.cs" />
+    <Compile Include="Net\SocketAddress.cs" />
+    <Compile Include="Net\IPv6Address.cs" />
+    <Compile Include="Net\Sockets\SocketException.cs" />
+    <Compile Include="Net\Sockets\NetworkStream.cs" />
+    <Compile Include="Net\Sockets\Socket.cs" />
+    <Compile Include="Net\Sockets\SocketError.cs" />
+    <Compile Include="Net\Sockets\TcpClient.cs" />
+    <Compile Include="Net\Sockets\TcpListener.cs" />
+    <Compile Include="Net\Sockets\WinsockInterop.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestAsyncResult.cs" />
+    <Compile Include="Web\HttpUtility.cs" />
+    <Compile Include="Win32\Registry.cs" />
+    <Compile Include="Win32\RegistryKey.cs" />
+    <Compile Include="Win32\RegistryValueKind.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,5 @@
+C:\Users\Ken\Documents\Visual Studio 2010\Projects\MarketplaceConfig\Homebrew\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Ken\Documents\Visual Studio 2010\Projects\MarketplaceConfig\Homebrew\Bin\Debug\Homebrew.dll
+C:\Users\Ken\Documents\Visual Studio 2010\Projects\MarketplaceConfig\Homebrew\Bin\Debug\Homebrew.pdb
+C:\Users\Ken\Documents\Visual Studio 2010\Projects\MarketplaceConfig\Homebrew\obj\Debug\Homebrew.dll
+C:\Users\Ken\Documents\Visual Studio 2010\Projects\MarketplaceConfig\Homebrew\obj\Debug\Homebrew.pdb

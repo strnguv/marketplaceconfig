@@ -1,0 +1,1 @@
+<Store xmlns="http://schemas.datacontract.org/2004/07/MarketplaceConfig" xmlns:i="http://www.w3.org/2001/XMLSchema-instance"><datVersion>1</datVersion><displayName>Nokia</displayName><storeEnabled>true</storeEnabled><storeID>Nokia</storeID><storeImage>Resources/Logos/nokia.png</storeImage><storeLocale>en-US</storeLocale><storeName>Nokia Market</storeName></Store>
