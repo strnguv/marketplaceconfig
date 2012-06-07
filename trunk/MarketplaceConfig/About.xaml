@@ -30,7 +30,7 @@
             <ScrollViewer>
                 <StackPanel>
                     <TextBlock Margin="0,20,0,0" FontFamily="Segoe WP" FontSize="32" TextAlignment="Center" Text="created by foxingworth software" />
-                    <TextBlock FontFamily="Segoe WP SemiLight" FontSize="24" TextAlignment="Center" Text="beta 0.2 - built on 5/31/12" />
+                    <TextBlock FontFamily="Segoe WP SemiLight" FontSize="24" TextAlignment="Center" Text="beta 0.2.0.2 - built on 6/6/12" />
                 
                     <TextBlock Margin="0,20,0,0" FontFamily="Segoe WP" FontSize="48" TextAlignment="Center" Text="contact" />
                     <StackPanel Orientation="Horizontal">

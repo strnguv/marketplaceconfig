@@ -37,7 +37,7 @@ namespace MarketplaceConfig
                 listMO.IsEnabled = false;
                 listOEM.IsEnabled = false;
                 sliderMaxDownload.IsEnabled = false;
-                
+
                 // Inform the user
                 messageQueue.Enqueue("This app requires root access. Please mark this app as 'Trusted' in WP7 Root Tools and restart the app.");
                 return;
@@ -67,84 +67,85 @@ namespace MarketplaceConfig
             while (messageQueue.Count > 0)
                 MessageBox.Show(messageQueue.Dequeue());
 
-            /*
-            listRegion.IsEnabled = !(bool)SettingsManager.getInstance().loadValue("autoregion");
-
-            // Always unlock region if no MO is selected
-            if (string.IsNullOrEmpty(((MOStore)listMO.SelectedItem).storeID))
-                listRegion.IsEnabled = true;
-             */
+            errorPrompt(new Exception("test"));
         }
 
         // TODO: Clean up this method. It's a mess and hacky.
         private void populateLists()
         {
-            listOEM.IsEnabled = false;
-            listMO.IsEnabled = false;
-
-            // This version of the silverlight toolkit is very picky. You can't set
-            // the listpicker to an empty collection without it throwing exceptions,
-            // so set them to 'non-empty' collection while prepping the real one
-            List<object> empty = new List<object>();
-            empty.Add(new object());
-            listOEM.ItemsSource = empty;
-            listMO.ItemsSource = empty;
-
-            // Get current market settings (for help with sorting, filtering, selecting items, etc)
-            string currentOEM = MarketWorker.getOEMStore();
-            string currentMO = MarketWorker.getMOStore();
-            string currentRegion = MarketWorker.getMarketRegion();
-
-            // Filter the sort the store lists
-            IEnumerable<Store> oemList = from s in (List<Store>)SettingsManager.getInstance().loadValue("oems")
-                                         orderby s.storeID
-                                         select s;
-            IEnumerable<MOStore> moList;
-            if ((bool)SettingsManager.getInstance().loadValue("hideforeign"))
-                moList = from s in (List<Store>)SettingsManager.getInstance().loadValue("mos")
-                         where s.storeLocale.Equals(currentRegion, StringComparison.InvariantCultureIgnoreCase)
-                         orderby s.storeName
-                         select new MOStore(s); // Create MOStore from Store so they bind correctly in UI (show region)
-            else
-                moList = from s in (List<Store>)SettingsManager.getInstance().loadValue("mos")
-                         orderby s.storeName
-                         select new MOStore(s);
-
-            // Populate and update the UI
-            Store selectedOEM = null;
-            MOStore selectedMO = null;
-
-            oems.Clear();
-            foreach (Store store in oemList)
+            try
             {
-                oems.Add(store);
-                if (store.Equals(currentOEM))
-                    selectedOEM = store;
-            }
+                listOEM.IsEnabled = false;
+                listMO.IsEnabled = false;
 
-            mos.Clear();
-            foreach (MOStore store in moList)
+                // This version of the silverlight toolkit is very picky. You can't set
+                // the listpicker to an empty collection without it throwing exceptions,
+                // so set them to 'non-empty' collection while prepping the real one
+                List<object> empty = new List<object>();
+                empty.Add(new object());
+                listOEM.ItemsSource = empty;
+                listMO.ItemsSource = empty;
+
+                // Get current market settings (for help with sorting, filtering, selecting items, etc)
+                string currentOEM = MarketWorker.getOEMStore();
+                string currentMO = MarketWorker.getMOStore();
+                string currentRegion = MarketWorker.getMarketRegion();
+
+                // Filter the sort the store lists
+                IEnumerable<Store> oemList = from s in (List<Store>)SettingsManager.getInstance().loadValue("oems")
+                                             orderby s.storeID
+                                             select s;
+                IEnumerable<MOStore> moList;
+                if ((bool)SettingsManager.getInstance().loadValue("hideforeign"))
+                    moList = from s in (List<Store>)SettingsManager.getInstance().loadValue("mos")
+                             where s.storeLocale.Equals(currentRegion, StringComparison.InvariantCultureIgnoreCase)
+                             orderby s.storeName
+                             select new MOStore(s); // Create MOStore from Store so they bind correctly in UI (show region)
+                else
+                    moList = from s in (List<Store>)SettingsManager.getInstance().loadValue("mos")
+                             orderby s.storeName
+                             select new MOStore(s);
+
+                // Populate and update the UI
+                Store selectedOEM = null;
+                MOStore selectedMO = null;
+
+                oems.Clear();
+                foreach (Store store in oemList)
+                {
+                    oems.Add(store);
+                    if (store.Equals(currentOEM))
+                        selectedOEM = store;
+                }
+
+                mos.Clear();
+                foreach (MOStore store in moList)
+                {
+                    mos.Add(store);
+                    if (store.Equals(currentMO))
+                        selectedMO = store;
+                }
+
+                listOEM.ItemsSource = oems;
+                listMO.ItemsSource = mos;
+
+                if (selectedOEM != null)
+                    listOEM.SelectedItem = selectedOEM;
+                if (selectedMO != null)
+                    listMO.SelectedItem = selectedMO;
+
+                listOEM.IsEnabled = true;
+                listMO.IsEnabled = true;
+
+                // This slider seems so easy in comparison :P
+                sliderMaxDownload.Value = MarketWorker.getMaxDownload();
+
+                textRestart.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            catch (Exception ex)
             {
-                mos.Add(store);
-                if (store.Equals(currentMO))
-                    selectedMO = store;
+                errorPrompt(ex);
             }
-
-            listOEM.ItemsSource = oems;
-            listMO.ItemsSource = mos;
-
-            if (selectedOEM != null)
-                listOEM.SelectedItem = selectedOEM;
-            if (selectedMO != null)
-                listMO.SelectedItem = selectedMO;
-
-            listOEM.IsEnabled = true;
-            listMO.IsEnabled = true;
-
-            // This slider seems so easy in comparison :P
-            sliderMaxDownload.Value = MarketWorker.getMaxDownload();
-
-            textRestart.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         void MainPage_UpdateComplete(object sender, EventArgs e)
@@ -193,6 +194,10 @@ namespace MarketplaceConfig
             {
                 // This will happen when changing the lists
             }
+            catch (Exception ex)
+            {
+                errorPrompt(ex);
+            }
         }
 
         private void listMO_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -207,21 +212,14 @@ namespace MarketplaceConfig
                 // If this is not the current marketplace, inform of a change
                 if (!selected.storeID.Equals(MarketWorker.getMOStore(), StringComparison.InvariantCultureIgnoreCase))
                     textRestart.Visibility = System.Windows.Visibility.Visible;
-
-                /*
-                // If auto-region is enabled, change the region accordingly
-                if ((bool)SettingsManager.getInstance().loadValue("autoregion"))
-                    foreach (Region region in listRegion.ItemsSource)
-                        if (region.ShortName.Equals(selected.Locale, StringComparison.InvariantCultureIgnoreCase))
-                        {
-                            listRegion.SelectedItem = region;
-                            break;
-                        }
-                 */
             }
             catch (InvalidCastException)
             {
                 // This will happen when changing the lists
+            }
+            catch (Exception ex)
+            {
+                errorPrompt(ex);
             }
         }
 
@@ -243,7 +241,7 @@ namespace MarketplaceConfig
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                errorPrompt(ex);
             }
 
             // An ugly way to 'close' the app, but it works
@@ -277,6 +275,20 @@ namespace MarketplaceConfig
         private void menuAbout_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/About.xaml", UriKind.Relative));
+        }
+
+        private void errorPrompt(Exception ex)
+        {
+            if (MessageBox.Show("The following error occured:\n\n" + ex.Message +
+                "\n\nWould you like to submit this to the developer?", "Error",
+                MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                EmailComposeTask email = new EmailComposeTask();
+                email.To = "trent@foxingworth.com";
+                email.Subject = "Error report";
+                email.Body = ex.Message + "\n" + ex.StackTrace;
+                email.Show();
+            }
         }
     }
 }
