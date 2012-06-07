@@ -9,7 +9,7 @@ using System.Resources;
 [assembly: AssemblyTitle("MarketplaceConfig")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Foxingworth Software")]
 [assembly: AssemblyProduct("MarketplaceConfig")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
@@ -32,6 +32,6 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("0.2.0.1")]
-[assembly: AssemblyFileVersion("0.2.0.1")]
+[assembly: AssemblyVersion("0.2.0.3")]
+[assembly: AssemblyFileVersion("0.2.0.3")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]

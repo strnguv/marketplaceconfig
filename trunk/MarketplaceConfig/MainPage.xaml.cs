@@ -66,8 +66,6 @@ namespace MarketplaceConfig
             // Message boxes are now safe to show without risking killing the app
             while (messageQueue.Count > 0)
                 MessageBox.Show(messageQueue.Dequeue());
-
-            errorPrompt(new Exception("test"));
         }
 
         // TODO: Clean up this method. It's a mess and hacky.
@@ -81,8 +79,8 @@ namespace MarketplaceConfig
                 // This version of the silverlight toolkit is very picky. You can't set
                 // the listpicker to an empty collection without it throwing exceptions,
                 // so set them to 'non-empty' collection while prepping the real one
-                List<object> empty = new List<object>();
-                empty.Add(new object());
+                List<Store> empty = new List<Store>();
+                empty.Add(new Store("Error loading list", "", "", false, new Uri(""), "en-us"));
                 listOEM.ItemsSource = empty;
                 listMO.ItemsSource = empty;
 
@@ -126,8 +124,11 @@ namespace MarketplaceConfig
                         selectedMO = store;
                 }
 
-                listOEM.ItemsSource = oems;
-                listMO.ItemsSource = mos;
+                if (oems.Count() > 0)
+                    listOEM.ItemsSource = oems;
+
+                if (mos.Count() > 0)
+                    listMO.ItemsSource = mos;
 
                 if (selectedOEM != null)
                     listOEM.SelectedItem = selectedOEM;
