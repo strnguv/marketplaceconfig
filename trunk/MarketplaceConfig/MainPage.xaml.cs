@@ -80,7 +80,8 @@ namespace MarketplaceConfig
                 // the listpicker to an empty collection without it throwing exceptions,
                 // so set them to 'non-empty' collection while prepping the real one
                 List<Store> empty = new List<Store>();
-                empty.Add(new Store("Error loading list", "", "", false, new Uri(""), "en-us"));
+                empty.Add(new Store("Error loading list", "", "", false, 
+                    new Uri("http://winpho.foxingworth.com/marketplaceconfig/error.png"), "en-us"));
                 listOEM.ItemsSource = empty;
                 listMO.ItemsSource = empty;
 
