@@ -1,0 +1,1 @@
+A WP7 app for unlocked devices that allows the user to change the OEM and MO stores, among other tweaks.
